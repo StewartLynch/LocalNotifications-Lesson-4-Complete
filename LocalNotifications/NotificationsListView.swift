@@ -15,7 +15,7 @@ struct NotificationsListView: View {
     @State private var scheduleDate = Date()
     var body: some View {
         @Bindable var lnManager: LocalNotificationManager = lnManager
-        NavigationView {
+        NavigationStack {
             VStack {
                 if lnManager.isGranted {
                     GroupBox("Schedule") {
@@ -99,13 +99,11 @@ struct NotificationsListView: View {
             .sheet(item: $lnManager.nextView) { $0 }
             .navigationTitle("Local Notifications")
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        lnManager.clearRequests()
-                    } label: {
-                        Image(systemName: "clear.fill")
-                            .imageScale(.large)
-                    }
+                Button {
+                    lnManager.clearRequests()
+                } label: {
+                    Image(systemName: "clear.fill")
+                        .imageScale(.large)
                 }
             }
         }
