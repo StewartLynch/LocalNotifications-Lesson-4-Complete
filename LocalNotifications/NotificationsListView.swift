@@ -52,7 +52,7 @@ struct NotificationsListView: View {
                         }
                         Button("Promo Offer") {
                             Task {
-                                let dateComponents = DateComponents(day: 1, hour: 10, minute: 0)
+                                let dateComponents = DateComponents(day: 11, hour: 18, minute: 56)
                                 let localNotification = LocalNotification(identifier: UUID().uuidString,
                                                                           title: "Special Promotion",
                                                                           bundleImageName: "Stewart.png",
@@ -70,6 +70,12 @@ struct NotificationsListView: View {
                         ForEach(lnManager.pendingRequests, id: \.identifier) { request in
                             VStack(alignment: .leading) {
                                 Text(request.content.title)
+                                //https://stackoverflow.com/questions/47127146/how-to-get-date-of-upcoming-notification-in-swift
+                                if let trigger = request.trigger as? UNCalendarNotificationTrigger,
+                                   let nextTriggerDate = trigger.nextTriggerDate()  {
+                                    Text(trigger.repeats ? "Repeats" : "Non Repeating")
+                                    Text(nextTriggerDate.formatted(date: .abbreviated, time: .shortened))
+                                }
                                 HStack {
                                     Text(request.identifier)
                                         .font(.caption)

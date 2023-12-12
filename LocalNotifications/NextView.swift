@@ -29,20 +29,5 @@ enum NextView: String, Identifiable, View {
             }
         }
     }
-//    @ViewBuilder
-//    func view() -> some View {
-//        switch self {
-//        case .promo:
-//            Text("Promotional Offer")
-//                .font(.largeTitle)
-//        case .renew:
-//            VStack {
-//                Text("Renew Subscription")
-//                    .font(.largeTitle)
-//               Image(systemName: "dollarsign.circle.fill")
-//                    .font(.system(size: 128))
-//            }
-//        }
-//    }
 }
 

@@ -102,7 +102,7 @@ class LocalNotificationManager: NSObject {
 }
 
 extension LocalNotificationManager: UNUserNotificationCenterDelegate {
-    
+   
     func registerActions() {
         let snooze10Action = UNNotificationAction(identifier: "snooze10", title: "Snooze 10 seconds")
         let snooze60Action = UNNotificationAction(identifier: "snooze60", title: "Snooze 60 seconds")
@@ -112,13 +112,13 @@ extension LocalNotificationManager: UNUserNotificationCenterDelegate {
         notificationCenter.setNotificationCategories([snoozeCategory])
     }
     
-    // Delegate function
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
         await getPendingRequests()
         return [.sound, .banner]
     }
     
+    @MainActor
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse) async {
         if let value = response.notification.request.content.userInfo["nextView"] as? String {
             nextView = NextView(rawValue: value)
