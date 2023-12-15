@@ -70,4 +70,5 @@ struct LocalNotification {
     var dateComponents: DateComponents?
     var repeats: Bool
     var categoryIdentifier: String?
+
 }
