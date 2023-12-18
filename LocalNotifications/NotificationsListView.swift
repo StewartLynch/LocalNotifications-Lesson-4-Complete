@@ -51,7 +51,6 @@ enum DaysOfWeek: Int, CaseIterable, Identifiable {
             "Saturday"
         }
     }
-    
 }
 
 struct NotificationsListView: View {
